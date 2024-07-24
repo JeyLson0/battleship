@@ -24,3 +24,23 @@ it('ship types', () => {
   let carrier = new Ship(mockShipType());
   expect(carrier.length).toStrictEqual([1, 2, 3, 4, 5]);
 });
+
+it('ship has been hit', () => {
+  let carrier = new Ship(mockShipType());
+  carrier.hit();
+  expect(carrier.hits).toBe(1);
+  carrier.hit();
+  expect(carrier.hits).toBe(2);
+  carrier.hit();
+  expect(carrier.hits).toBe(3);
+});
+
+it('ship has been sunk', () => {
+  let carrier = new Ship(mockShipType());
+  carrier.hit();
+  carrier.hit();
+  carrier.hit();
+  carrier.hit();
+  carrier.hit();
+  expect(carrier.sunk).toBe(true);
+});
