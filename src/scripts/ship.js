@@ -1,16 +1,20 @@
 export default class Ship {
-  constructor(arrLength) {
+  constructor(length) {
     // length is an array of spaces in gameboard
-    this.length = arrLength;
+    this.length = length;
     this.hits = 0;
     this.sunk = false;
-    this.hit = () => {
-      this.hits += 1;
-    };
-    this.isSunk = () => {
-      this.sunk = true;
-    };
   }
+
+  hit = () => {
+    this.hits += 1;
+  };
+
+  isSunk = () => {
+    if (this.length === this.hits || this.length < this.hits) {
+      this.sunk = true;
+    }
+  };
 }
 
 // battle ship length 4
