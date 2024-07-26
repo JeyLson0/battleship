@@ -39,7 +39,7 @@ describe('ship placement', () => {
   });
 
   // DO this soon
-  /* it('ship placement should not be placed on space has been taken', () => {
+  /* it('ship placement should not be placed on occupied space', () => {
   }); */
 });
 
