@@ -46,7 +46,6 @@ describe('ship placement', () => {
 describe('gameboard receiveAttack', () => {
   let gameboard = new GameBoard();
   let destroyer = new Ship(2);
-  let submarine = new Ship(3);
   gameboard.placeShip(destroyer, 0, 0);
 
   it('ship took a hit', () => {
@@ -56,5 +55,26 @@ describe('gameboard receiveAttack', () => {
 
   it('attacker missed', () => {
     expect(gameboard.receiveAttack(1, 3)).toBe('miss!');
+  });
+});
+
+describe('scan gameboard', () => {
+  let gameboard = new GameBoard();
+  let submarine = new Ship(3);
+  gameboard.placeShip(submarine, 6, 0);
+
+  it('gameboard contains ships', () => {
+    let scannedBoard = gameboard.scanBoard();
+    console.log(scannedBoard);
+    expect(Array.isArray(scannedBoard)).toBeTruthy();
+  });
+
+  it('gameboard is clear', () => {
+    gameboard.receiveAttack(6, 0);
+    gameboard.receiveAttack(7, 0);
+    gameboard.receiveAttack(8, 0);
+    let scannedBoard = gameboard.scanBoard();
+    console.log(scannedBoard);
+    expect(scannedBoard).toMatch('grid is clear');
   });
 });
