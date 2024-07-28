@@ -8,21 +8,26 @@ describe('player class', () => {
     let obj = { val: 3 };
     let randomStr = 'random';
     expect(() => {
-      let player = new Player(num, GameBoard);
+      let player1 = new Player(num, GameBoard);
     }).toThrow();
     expect(() => {
-      let player = new Player(array, GameBoard);
+      let player2 = new Player(array, GameBoard);
     }).toThrow();
     expect(() => {
-      let player = new Player(obj, GameBoard);
+      let player3 = new Player(obj, GameBoard);
     }).toThrow();
     expect(() => {
-      let player = new Player(randomStr, GameBoard);
+      let player4 = new Player(randomStr, GameBoard);
     }).toThrow();
   });
 
-  it('player created with Player class', () => {
+  it('Player class has player type', () => {
     let player = new Player('player', GameBoard);
     expect(player.type).toBe('player');
+  });
+
+  it('Player class has computer type', () => {
+    let player = new Player('computer', GameBoard);
+    expect(player.type).toBe('computer');
   });
 });
