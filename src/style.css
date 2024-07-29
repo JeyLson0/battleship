@@ -6,8 +6,8 @@
     font: inherit;
 }
 
-body{
-    min-height: 100vh;
+html {
+    font-family: basic-sans, sans-serif;
 }
 
 img, picture, svg, video{
@@ -15,4 +15,29 @@ img, picture, svg, video{
     max-width: 100%;
 }
 
+body {
+    min-height: 100vh;
+    width: 100%;
+}
+
 /* CSS starts here */
+
+
+#opening-dialog {
+    display: flex;
+    flex: 0;
+    justify-content: space-evenly;
+    align-items: center;
+    position: absolute;
+    margin: auto;
+    min-width: 15rem;
+    width: 25rem;
+    min-height: 10rem;
+    height: 11rem;
+}
+
+.dialog-btn {
+    height: 5rem;
+    width: 40%;
+    font-size: clamp(0.5rem, 5vw, 1rem);
+}
