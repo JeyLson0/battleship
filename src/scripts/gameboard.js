@@ -15,21 +15,20 @@ export default class GameBoard {
   }
 
   placeShip(ship, yIndex, xIndex, horizontalAxis) {
-    let s = ship;
     let shipLength = ship.length;
     if (horizontalAxis === true) {
       if (xIndex + shipLength > this.grid.length) {
         throw new Error('ship placement exceeds grid size');
       }
       for (let i = 0; i < shipLength; i++) {
-        this.grid[yIndex][xIndex + i] = s;
+        this.grid[yIndex][xIndex + i] = ship;
       }
     } else {
       if (yIndex + shipLength > this.grid.length) {
         throw new Error('ship placement exceeds grid size');
       }
       for (let i = 0; i < shipLength; i++) {
-        this.grid[yIndex + i][xIndex] = s;
+        this.grid[yIndex + i][xIndex] = ship;
       }
     }
   }

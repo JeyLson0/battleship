@@ -7,13 +7,35 @@
 </head>
 <body>
     <header class="header-title-container">
-        <h1>BATTLE SHIP</h1>
+        <h1 class="header-title">BATTLE SHIP</h1>
     </header>
+    <dialog id="opening-dialog">
+        <div class="dialog-btn-container">
+            <button type="button" value="pvp" class="dialog-btn pvp-btn">Player vs Player</button>
+            <button type="button" value="pve" class="dialog-btn pve-btn">Player vs Computer</button>
+        </div>
+    </dialog>
     <div class="main-container">
-        <dialog id="opening-dialog">
-            <button type="button" value="pvp" class="dialog-btn">Player vs Player</button>
-            <button type="button" value="pve" class="dialog-btn">Player vs Computer</button>
-        </dialog>
+        <div class="status-container">
+            <div class="turn-status">Player 1</div>
+            <div class="game-status">Place ships on board</div>
+        </div>
+        <div class="game-container">
+            <div class="player-one-container">
+                <div class="ship-container"></div>
+                <div class="grid-container"></div>
+            </div>
+            <div class="player-two-container">
+                <div class="ship-container"></div>
+                <div class="grid-container"></div>
+            </div>
+        </div>
+        <div class="ui-btn-container">
+
+        </div>
+
+
+
     </div>
     <footer class="footer-container"></footer>
 </body>
