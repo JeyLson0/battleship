@@ -48,6 +48,11 @@ body {
     gap: 1rem;
 }
 
+/* main-container */
+.main-container{
+    display: flex;
+    flex-direction: column;
+}
 
 /* game container */
 .game-container{
@@ -56,15 +61,56 @@ body {
     gap: 1rem;
 }
 
+/* player container */
+.player-container {
+    display: flex;
+    gap: 1rem;
+}
 
 /* grid */
+.grid-container {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.grid-title {
+    width: 100%;
+    text-align: center;
+}
+
 .grid-elem  {
     border: 1px solid red;
 }
 
-.grid-container {
+.grid {
     display: grid;
     grid-template-rows: repeat(10, 1.5rem) ;
     grid-template-columns: repeat(10, 1.5rem) ;
     gap: 1px;
+}
+
+/* ship-elems */
+
+.ships {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding-top: 2rem;
+}
+
+.ship-elem {
+    width: 5rem;
+    height: 1rem;
+    border: 1px dashed blue;
+
+
+}
+
+.ship-elem p {
+    font-size: 0.8rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
 }

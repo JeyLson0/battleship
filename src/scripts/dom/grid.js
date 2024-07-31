@@ -1,7 +1,7 @@
 import addGridElemEvent from '../events/gridevents';
 
 // selects all .grid-container div
-const playersGrid = document.querySelectorAll('.grid-container');
+const playersGrid = document.querySelectorAll('.grid');
 
 // creates the button elem, containing values
 function createGridElem(yIndex, xIndex) {
@@ -24,7 +24,7 @@ function createGrid() {
       let x = j;
       for (let n = 0; n < playersGrid.length; n++) {
         let elem = createGridElem(y, x);
-        addGridElemEvent(elem);
+        /* addGridElemEvent(elem); */ // event should be during player's turn only
         placeElemToGrid(elem, n);
       }
     }
