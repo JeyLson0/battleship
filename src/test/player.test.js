@@ -1,5 +1,5 @@
-import Player from '../scripts/player';
-import GameBoard from '../scripts/gameboard';
+import Player from '../scripts/classes/player';
+import GameBoard from '../scripts/classes/gameboard';
 
 describe('player class', () => {
   it('player class type property should be player or computer', () => {

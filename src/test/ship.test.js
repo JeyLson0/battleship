@@ -1,4 +1,4 @@
-import Ship from '../scripts/ship';
+import Ship from '../scripts/classes/ship';
 
 let mockShipType = jest
   .fn()

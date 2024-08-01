@@ -5,9 +5,9 @@ const playersGrid = document.querySelectorAll('.grid');
 
 // creates the button elem, containing values
 function createGridElem(yIndex, xIndex) {
-  let elem = document.createElement('button');
+  let elem = document.createElement('div');
   elem.classList.add('grid-elem');
-  elem.setAttribute('value', `${yIndex}, ${xIndex}`);
+  elem.setAttribute('data-index-coordinates', `${yIndex}, ${xIndex}`);
   return elem;
 }
 

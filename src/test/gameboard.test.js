@@ -1,5 +1,5 @@
-import GameBoard from '../scripts/gameboard';
-import Ship from '../scripts/ship';
+import GameBoard from '../scripts/classes/gameboard';
+import Ship from '../scripts/classes/ship';
 
 describe('grid size', () => {
   it('game board should be a 10x10 grid', () => {

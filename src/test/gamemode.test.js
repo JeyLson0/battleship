@@ -1,4 +1,4 @@
-import Gamemode from '../scripts/gamemode';
+import Gamemode from '../scripts/classes/gamemode';
 
 let mockButtonInput = jest.fn();
 mockButtonInput.mockReturnValue('pvp');
