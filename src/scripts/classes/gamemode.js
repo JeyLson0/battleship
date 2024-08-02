@@ -1,7 +1,26 @@
-export default class Gamemode {
+import GameBoard from './gameboard';
+import Player from './player';
+
+class Game {
   constructor() {
     this.mode = null;
+    this.playerOne = null;
+    this.playerTwo = null;
   }
 
-  // create a method that updates the game.mode and starts game when clicking an event modal
+  startGame(htmlInput) {
+    if (htmlInput === 'pvp') {
+      this.mode = htmlInput;
+      this.playerOne = new Player('player', GameBoard);
+      this.playerTwo = new Player('player', GameBoard);
+    }
+    if (htmlInput === 'pve') {
+      this.mode = htmlInput;
+      this.playerOne = new Player('player', GameBoard);
+      this.playerTwo = new Player('computer', GameBoard);
+    }
+  }
 }
+
+const game = new Game();
+export default game;
