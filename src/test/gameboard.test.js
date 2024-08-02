@@ -35,7 +35,7 @@ describe('ship placement', () => {
   it('ship placement must not exceed grid', () => {
     expect(() => {
       gameboard.placeShip(carrier, 8, 8);
-    }).toThrow('ship placement exceeds grid size');
+    }).toThrow('ship placement exceeds grid area');
   });
 
   // DO this soon

@@ -21,17 +21,15 @@ function createShipElem(shipType) {
   return elem;
 }
 
-function fillShipContainers() {
+export function fillShipContainers(playerType) {
   let shipTypes = [...shipOrder];
-  ships.forEach(shipDiv => {
+  if (playerType === 'player one') {
     for (let i = 0; i < 5; i++) {
       let shipElem = createShipElem(shipTypes[i]);
-      shipDiv.appendChild(shipElem);
+      ships[0].appendChild(shipElem);
     }
-  });
+  }
 }
-
-fillShipContainers();
 
 /* directionButton */
 function createBtnDirection() {
@@ -42,11 +40,9 @@ function createBtnDirection() {
   return btn;
 }
 
-function addBtnElem() {
-  directionBtnArr.forEach(wrapper => {
+export function addBtnDirectionElem(playerType) {
+  if (playerType === 'player one') {
     let elem = createBtnDirection();
-    wrapper.appendChild(elem);
-  });
+    directionBtnArr[0].appendChild(elem);
+  }
 }
-
-addBtnElem();

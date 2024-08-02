@@ -22,8 +22,8 @@ describe('player class', () => {
   });
 
   it('Player class has player type', () => {
-    let player = new Player('player', GameBoard);
-    expect(player.type).toBe('player');
+    let player = new Player('player one', GameBoard);
+    expect(player.type).toBe('player one');
   });
 
   it('Player class has computer type', () => {

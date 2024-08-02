@@ -54,6 +54,13 @@ body {
     flex-direction: column;
 }
 
+/* status-container */
+.status-bar {
+    height: 1rem;
+
+    border: 1px dashed green;
+}
+
 /* game container */
 .game-container{
     display: flex;
