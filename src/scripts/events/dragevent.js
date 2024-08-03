@@ -8,5 +8,3 @@ const playerTwoShipsChildren = playerTwoShipsElem.children;
 
 function addDragEvents(player) {}
 function removeDragEvents(player) {}
-
-console.log(playerOneShipsChildren);

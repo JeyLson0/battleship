@@ -1,5 +1,3 @@
-import addGridElemEvent from '../events/gridevents';
-
 // selects all .grid-container div
 const playersGrid = document.querySelectorAll('.grid');
 

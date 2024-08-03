@@ -68,10 +68,14 @@ body {
     gap: 1rem;
 }
 
-/* player container */
+/* player container && ship container*/
 .player-container {
     display: flex;
     gap: 1rem;
+}
+
+.ship-container {
+    width: 100px /* temp value */
 }
 
 /* grid */
@@ -97,7 +101,13 @@ body {
     gap: 1px;
 }
 
-/* ship-elems */
+/* game-container > player container > ship container > ship-elems */
+
+.ship-container {
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+}
 
 .ships {
     display: flex;
@@ -120,4 +130,13 @@ body {
     overflow: hidden;
     text-overflow: ellipsis;
     width: 100%;
+}
+
+
+/* ui buttons */
+
+.ui-btn-container {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
 }
