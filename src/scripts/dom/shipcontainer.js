@@ -1,3 +1,5 @@
+import { addDirectionalEvent } from '../events/directionevent';
+
 const ships = document.querySelectorAll('.ships');
 const directionBtnArr = document.querySelectorAll('.direction-btn-wrapper');
 
@@ -29,6 +31,12 @@ export function fillShipContainers(playerType) {
       ships[0].appendChild(shipElem);
     }
   }
+  if (playerType === 'player two') {
+    for (let i = 0; i < 5; i++) {
+      let shipElem = createShipElem(shipTypes[i]);
+      ships[1].appendChild(shipElem);
+    }
+  }
 }
 
 /* directionButton */
@@ -44,5 +52,10 @@ export function addBtnDirectionElem(playerType) {
   if (playerType === 'player one') {
     let elem = createBtnDirection();
     directionBtnArr[0].appendChild(elem);
+    addDirectionalEvent();
+  }
+  if (playerType === 'player two' || playerType === 'computer') {
+    let elem = createBtnDirection();
+    directionBtnArr[1].appendChild(elem);
   }
 }
