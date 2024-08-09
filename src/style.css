@@ -140,3 +140,17 @@ body {
     justify-content: center;
     gap: 1rem;
 }
+
+div[draggable] {
+}
+
+/* draggable elements */
+
+.dragging {
+    opacity: 0.4;
+    background: red;
+}
+
+.dragover {
+    background: gray;
+}

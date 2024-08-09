@@ -5,7 +5,7 @@ const playersGrid = document.querySelectorAll('.grid');
 function createGridElem(yIndex, xIndex) {
   let elem = document.createElement('div');
   elem.classList.add('grid-elem');
-  elem.setAttribute('data-index-coordinates', `${yIndex}, ${xIndex}`);
+  elem.setAttribute('data-coordinates', `${yIndex}, ${xIndex}`);
   return elem;
 }
 

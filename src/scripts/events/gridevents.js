@@ -1,5 +1,32 @@
-export default function addGridElemEvent(elem) {
-  elem.addEventListener('click', e => {
-    console.log(e.target.value);
-  });
+import { dropEvent, dragEnterEvent, dragLeaveEvent } from './dragdropevent';
+
+export function addDropZone(playerType) {
+  if (playerType === 'player one') {
+    const grid = document.getElementById('player-one-grid');
+    const gridElems = [...grid.children];
+    gridElems.forEach(elem => {
+      elem.classList.add('dropzone');
+      elem.addEventListener('drop', dropEvent);
+      elem.addEventListener('dragover', dragEnterEvent);
+      elem.addEventListener('dragleave', dragLeaveEvent);
+    });
+  } else {
+    console.log(playerType);
+    const grid = document.getElementById('player-two-grid');
+    const gridElems = [...grid.children];
+    gridElems.forEach(elem => elem.classList.add('dropzone'));
+  }
+}
+
+export function removeDropZone(playerType) {
+  if (playerType === 'player one') {
+    const grid = document.getElementById('player-one-grid');
+    const gridElems = [...grid.children];
+    gridElems.forEach(elem => elem.classList.remove('dropzone'));
+  } else {
+    console.log(playerType);
+    const grid = document.getElementById('player-two-grid');
+    const gridElems = [...grid.children];
+    gridElems.forEach(elem => elem.classList.remove('dropzone'));
+  }
 }

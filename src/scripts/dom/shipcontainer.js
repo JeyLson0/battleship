@@ -17,7 +17,7 @@ function createShipElem(shipType) {
   let childDiv = document.createElement('div');
   elem.appendChild(childDiv);
   childDiv.textContent = shipType[0];
-  childDiv.setAttribute('draggable', false);
+  childDiv.setAttribute('draggable', true);
   childDiv.setAttribute('data-length', shipType[1]);
   elem.classList.add('ship-elem', `${shipType[0]}-wrapper`);
   return elem;
@@ -43,6 +43,7 @@ export function fillShipContainers(playerType) {
 function createBtnDirection() {
   let btn = document.createElement('button');
   btn.classList.add('btn-direction');
+  btn.id = 'direction-btn';
   btn.setAttribute('value', 'horizontal');
   btn.textContent = 'horizontal';
   return btn;
