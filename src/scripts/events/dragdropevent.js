@@ -1,36 +1,6 @@
 let dragData;
 
-function dragStartFunc(event) {
-  const elem = event.target;
-  const directionVal = document.querySelector('#direction-btn').value;
-  elem.classList.add('dragging');
-  const dataArr = [elem.dataset.length, directionVal];
-  event.dataTransfer.setData('text/plain', dataArr);
-  dragData = dataArr;
-}
-
-function dragEndFunc(event) {
-  let elem = event.target;
-  elem.classList.remove('dragging');
-}
-
-export default function addDraggableEvent() {
-  const draggableElems = document.querySelectorAll('div[draggable]');
-  draggableElems.forEach(elem => {
-    elem.addEventListener('dragstart', dragStartFunc);
-    elem.addEventListener('dragend', dragEndFunc);
-  });
-}
-
-export function dropEvent(event) {
-  event.preventDefault();
-  const val = event.target.dataset.coordinates;
-  console.log(`dropped at: ${val}`);
-  let data = event.dataTransfer.getData('text');
-  const dataArr = data.split(',');
-  console.log(dataArr);
-}
-
+/* dropzone element */
 function addClassToGridElem(currentY, currentX, length, direction) {
   if (direction === 'horizontal') {
     for (let i = 0; i <= length; i++) {
@@ -57,8 +27,9 @@ function addClassToGridElem(currentY, currentX, length, direction) {
   }
 }
 
-export function dragEnterEvent(event) {
+export function dragOverEvent(event) {
   event.preventDefault();
+  console.log(event);
   const val = event.target.dataset.coordinates;
   const [yCoor, xCoor] = val.split(', ');
   const [length, direction] = dragData;
@@ -99,6 +70,48 @@ export function dragLeaveEvent(event) {
   removeClassFromGridElem(yCoor, xCoor, length, direction);
 }
 
-/* NOTE: getCoordinates should get all the divs that the ship will occupy.
-the divs will get a new class that changes background indicating you can place
-the ship over the div */
+/* drag element */
+function dragStartFunc(event) {
+  const elem = event.target;
+  const directionVal = document.querySelector('#direction-btn').value;
+  elem.classList.add('dragging');
+  const dataArr = [elem.dataset.length, directionVal];
+  event.dataTransfer.setData('text/plain', dataArr);
+  dragData = dataArr;
+
+  const dropzones = document.querySelectorAll('.dropzone');
+  dropzones.forEach(dropzone => {
+    dropzone.addEventListener('dragover', dragOverEvent);
+    dropzone.addEventListener('dragleave', dragLeaveEvent);
+  });
+}
+
+function dragEndFunc(event) {
+  let elem = event.target;
+  elem.classList.remove('dragging');
+}
+
+export default function addDraggableEvent() {
+  const draggableElems = document.querySelectorAll('div[draggable]');
+  draggableElems.forEach(elem => {
+    elem.addEventListener('dragstart', dragStartFunc);
+    elem.addEventListener('dragend', dragEndFunc);
+  });
+}
+
+/* drop should  */
+export function dropEvent(event) {
+  event.preventDefault();
+  const val = event.target.dataset.coordinates;
+  console.log(`dropped at: ${val}`);
+  let data = event.dataTransfer.getData('text');
+  const dataArr = data.split(',');
+  console.log(data);
+  console.log(dataArr);
+
+  const dropzones = document.querySelectorAll('.dropzone');
+  dropzones.forEach(dropzone => {
+    dropzone.removeEventListener('dragover', dragOverEvent);
+    dropzone.removeEventListener('dragleave', dragLeaveEvent);
+  });
+}

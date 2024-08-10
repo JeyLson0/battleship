@@ -1,4 +1,4 @@
-import { addDirectionalEvent } from '../events/directionevent';
+import addDirectionalEvent from '../events/directionevent';
 
 const ships = document.querySelectorAll('.ships');
 const directionBtnArr = document.querySelectorAll('.direction-btn-wrapper');

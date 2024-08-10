@@ -1,4 +1,4 @@
-import { dropEvent, dragEnterEvent, dragLeaveEvent } from './dragdropevent';
+import { dropEvent, dragOverEvent, dragLeaveEvent } from './dragdropevent';
 
 export function addDropZone(playerType) {
   if (playerType === 'player one') {
@@ -7,8 +7,6 @@ export function addDropZone(playerType) {
     gridElems.forEach(elem => {
       elem.classList.add('dropzone');
       elem.addEventListener('drop', dropEvent);
-      elem.addEventListener('dragover', dragEnterEvent);
-      elem.addEventListener('dragleave', dragLeaveEvent);
     });
   } else {
     console.log(playerType);
