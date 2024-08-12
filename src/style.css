@@ -154,3 +154,7 @@ div[draggable] {
 .dragover {
     background: gray;
 }
+
+.occupied {
+    background: teal
+}

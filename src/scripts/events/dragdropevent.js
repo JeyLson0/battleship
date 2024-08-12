@@ -2,6 +2,7 @@ let dragData;
 
 /* dropzone element */
 function addClassToGridElem(currentY, currentX, length, direction) {
+  let elemArr = [];
   if (direction === 'horizontal') {
     for (let i = 0; i <= length; i++) {
       const newXCoor = Math.floor(currentX) + i;
@@ -29,7 +30,6 @@ function addClassToGridElem(currentY, currentX, length, direction) {
 
 export function dragOverEvent(event) {
   event.preventDefault();
-  console.log(event);
   const val = event.target.dataset.coordinates;
   const [yCoor, xCoor] = val.split(', ');
   const [length, direction] = dragData;
@@ -47,6 +47,7 @@ function removeClassFromGridElem(currentY, currentX, length, direction) {
         `div[data-coordinates="${currentY}, ${newXCoor}"`,
       );
       elem.classList.remove('dragover');
+      elem.classList.remove('occupied');
     }
   } else {
     for (let i = 0; i < length; i++) {
@@ -58,6 +59,7 @@ function removeClassFromGridElem(currentY, currentX, length, direction) {
         `div[data-coordinates="${newYCoor}, ${currentX}"`,
       );
       elem.classList.remove('dragover');
+      elem.classList.remove('occupied');
     }
   }
 }
@@ -100,17 +102,26 @@ export default function addDraggableEvent() {
 }
 
 /* drop should  */
+function occupyDragoverElems() {
+  const dragoverElems = document.querySelectorAll('.dragover');
+  dragoverElems.forEach(elem => {
+    elem.classList.remove('dropzone', 'dragover');
+    elem.classList.add('occupied');
+    elem.removeEventListener('dragover', dragOverEvent);
+    elem.removeEventListener('dragleave', dragLeaveEvent);
+  });
+}
+
 export function dropEvent(event) {
   event.preventDefault();
   const val = event.target.dataset.coordinates;
-  console.log(`dropped at: ${val}`);
   let data = event.dataTransfer.getData('text');
   const dataArr = data.split(',');
+  occupyDragoverElems();
   console.log(data);
   console.log(dataArr);
-
-  const dropzones = document.querySelectorAll('.dropzone');
-  dropzones.forEach(dropzone => {
+  const dropZones = document.querySelectorAll('.dropzone');
+  dropZones.forEach(dropzone => {
     dropzone.removeEventListener('dragover', dragOverEvent);
     dropzone.removeEventListener('dragleave', dragLeaveEvent);
   });
