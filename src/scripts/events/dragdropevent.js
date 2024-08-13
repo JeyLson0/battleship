@@ -1,9 +1,8 @@
-// global variable will contain ship elem data [direction, length, *shiptype]
+// global variable will contain ship elem data [direction, length, type]
 let dragData;
 
 /* dropzone element */
-function addClassToGridElem(currentY, currentX, length, direction) {
-  let elemArr = [];
+function addClassToGridElem(currentY, currentX, length, direction, type) {
   if (direction === 'horizontal') {
     for (let i = 0; i < length; i++) {
       const newXCoor = Math.floor(currentX) + i;
@@ -13,8 +12,8 @@ function addClassToGridElem(currentY, currentX, length, direction) {
       if (newXCoor > 9 || elem.classList.contains('filled')) {
         break;
       }
-      elemArr.push(elem);
       elem.classList.add('dragover');
+      elem.setAttribute('data-ship', type);
     }
   } else {
     for (let i = 0; i < length; i++) {
@@ -26,11 +25,12 @@ function addClassToGridElem(currentY, currentX, length, direction) {
         break;
       }
       elem.classList.add('dragover');
+      elem.setAttribute('data-ship', type);
     }
   }
 }
 
-function removeClassFromGridElem(currentY, currentX, length, direction) {
+function removeClassFromGridElem(currentY, currentX, length, direction, type) {
   if (direction === 'horizontal') {
     for (let i = 0; i < length; i++) {
       const newXCoor = Math.floor(currentX) + i;
@@ -42,6 +42,7 @@ function removeClassFromGridElem(currentY, currentX, length, direction) {
       );
       elem.classList.remove('occupied');
       elem.classList.remove('dragover');
+      elem.removeAttribute('data-ship', type);
     }
   } else {
     for (let i = 0; i < length; i++) {
@@ -54,6 +55,7 @@ function removeClassFromGridElem(currentY, currentX, length, direction) {
       );
       elem.classList.remove('occupied');
       elem.classList.remove('dragover');
+      elem.removeAttribute('data-ship', type);
     }
   }
 }
@@ -62,16 +64,16 @@ export function dragOverEvent(event) {
   event.preventDefault();
   const val = event.target.dataset.coordinates;
   const [yCoor, xCoor] = val.split(', ');
-  const [direction, length] = dragData;
-  addClassToGridElem(yCoor, xCoor, length, direction);
+  const [direction, length, type] = dragData;
+  addClassToGridElem(yCoor, xCoor, length, direction, type);
 }
 
 export function dragLeaveEvent(event) {
   event.preventDefault();
   const val = event.target.dataset.coordinates;
   const [yCoor, xCoor] = val.split(', ');
-  const [direction, length] = dragData;
-  removeClassFromGridElem(yCoor, xCoor, length, direction);
+  const [direction, length, type] = dragData;
+  removeClassFromGridElem(yCoor, xCoor, length, direction, type);
 }
 
 /* drag element */
@@ -79,7 +81,7 @@ function dragStartFunc(event) {
   const elem = event.target;
   const directionVal = document.querySelector('#direction-btn').value;
   elem.classList.add('dragging');
-  const dataArr = [directionVal, elem.dataset.length];
+  const dataArr = [directionVal, elem.dataset.length, elem.dataset.type];
   event.dataTransfer.setData('text/plain', dataArr);
   dragData = dataArr;
 
@@ -92,7 +94,7 @@ function dragStartFunc(event) {
 
 function dragEndFunc(event) {
   let elem = event.target;
-  elem.classList.remove('dragging');
+  elem.removeAttribute('class');
 }
 
 export default function addDraggableEvent() {
