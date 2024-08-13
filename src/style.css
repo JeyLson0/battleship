@@ -155,6 +155,10 @@ div[draggable] {
     background: gray;
 }
 
-.occupied {
+.filled {
     background: teal
+}
+
+.occupied {
+    background: red;
 }
