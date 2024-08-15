@@ -3,6 +3,7 @@ let dragData;
 
 /* dropzone element */
 function addClassToGridElem(currentY, currentX, length, direction, type) {
+  let elemArr = [];
   if (direction === 'horizontal') {
     for (let i = 0; i < length; i++) {
       const newXCoor = Math.floor(currentX) + i;
@@ -10,8 +11,12 @@ function addClassToGridElem(currentY, currentX, length, direction, type) {
         `div[data-coordinates="${currentY}, ${newXCoor}"`,
       );
       if (newXCoor > 9 || elem.classList.contains('filled')) {
+        if (elemArr.length > 0) {
+          elemArr.forEach(item => item.classList.add('occupied'));
+        }
         break;
       }
+      elemArr.push(elem);
       elem.classList.add('dragover');
       elem.setAttribute('data-ship', type);
     }
@@ -22,8 +27,12 @@ function addClassToGridElem(currentY, currentX, length, direction, type) {
         `div[data-coordinates="${newYCoor}, ${currentX}"`,
       );
       if (newYCoor > 9 || elem.classList.contains('filled')) {
+        if (elemArr.length > 0) {
+          elemArr.forEach(item => item.classList.add('occupied'));
+        }
         break;
       }
+      elemArr.push(elem);
       elem.classList.add('dragover');
       elem.setAttribute('data-ship', type);
     }
@@ -116,18 +125,30 @@ function occupyDragoverElems() {
   });
 }
 
+function toggleDraggable(ship) {
+  let elem = document.querySelector(`div[data-type=${ship}]`);
+  if (elem.draggable === true) {
+    elem.removeAttribute('draggable');
+    elem.removeEventListener('dragstart', dragStartFunc);
+    elem.removeEventListener('dragend', dragEndFunc);
+  }
+}
+
 export function dropEvent(event) {
   event.preventDefault();
-  const val = event.target.dataset.coordinates;
   let dataStr = event.dataTransfer.getData('text');
   const dataArr = dataStr.split(',');
+  const dataShipStr = dataArr[2];
   const dataLength = Math.floor(dataArr[1]);
   const dragOverElems = document.querySelectorAll('.dragover');
   const dragOverElemsLength = dragOverElems.length;
   if (dataLength === dragOverElemsLength) {
     occupyDragoverElems();
+    toggleDraggable(dataShipStr);
   } else {
-    dragOverElems.forEach(elem => elem.classList.remove('dragover'));
+    dragOverElems.forEach(elem =>
+      elem.classList.remove('dragover', 'occupied'),
+    );
   }
   const dropZones = document.querySelectorAll('.dropzone');
   dropZones.forEach(dropzone => {
