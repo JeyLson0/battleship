@@ -129,6 +129,7 @@ function toggleDraggable(ship) {
   let elem = document.querySelector(`div[data-type=${ship}]`);
   if (elem.draggable === true) {
     elem.removeAttribute('draggable');
+    elem.classList.remove('dragging');
     elem.removeEventListener('dragstart', dragStartFunc);
     elem.removeEventListener('dragend', dragEndFunc);
   }
@@ -147,7 +148,7 @@ export function dropEvent(event) {
     toggleDraggable(dataShipStr);
   } else {
     dragOverElems.forEach(elem =>
-      elem.classList.remove('dragover', 'occupied'),
+      elem.classList.remove('dragover', 'occupied', 'dragging'),
     );
   }
   const dropZones = document.querySelectorAll('.dropzone');
