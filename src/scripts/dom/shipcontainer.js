@@ -4,7 +4,7 @@ const ships = document.querySelectorAll('.ships');
 const directionBtnArr = document.querySelectorAll('.direction-btn-wrapper');
 
 /* Ship-container */
-const shipOrder = [
+export const shipOrder = [
   ['destroyer', 2],
   ['submarine', 3],
   ['cruiser', 3],

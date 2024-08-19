@@ -1,7 +1,8 @@
 export default class Ship {
-  constructor(length) {
+  constructor(length, type) {
     // length is an array of spaces in gameboard
     this.length = length;
+    this.type = type;
     this.hits = 0;
     this.sunk = false;
   }

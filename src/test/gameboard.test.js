@@ -18,24 +18,15 @@ describe('ship placement', () => {
   let gameboard = new GameBoard();
 
   it('gameboard should be able to place ships at specific coordinates', () => {
-    gameboard.placeShip(destroyer, 0, 1, true);
+    gameboard.placeShip(destroyer, 0, 1);
     expect(gameboard.grid[0][1]).toBe(destroyer);
-    expect(gameboard.grid[0][2]).toBe(destroyer);
+    expect(gameboard.grid[0][2]).toBe(0);
+    expect(gameboard.grid[1][1]).toBe(0);
   });
 
-  it('carrier placed in (3,5) in vertical position', () => {
+  it('carrier placed in (3,5)', () => {
     gameboard.placeShip(carrier, 2, 5);
     expect(gameboard.grid[2][5]).toBe(carrier);
-    expect(gameboard.grid[3][5]).toBe(carrier);
-    expect(gameboard.grid[4][5]).toBe(carrier);
-    expect(gameboard.grid[5][5]).toBe(carrier);
-    expect(gameboard.grid[6][5]).toBe(carrier);
-  });
-
-  it('ship placement must not exceed grid', () => {
-    expect(() => {
-      gameboard.placeShip(carrier, 8, 8);
-    }).toThrow('ship placement exceeds grid area');
   });
 
   // DO this soon
@@ -50,7 +41,6 @@ describe('gameboard receiveAttack', () => {
 
   it('ship took a hit', () => {
     expect(gameboard.receiveAttack(0, 0)).toBe('ship took a hit!');
-    expect(gameboard.receiveAttack(1, 0)).toBe('ship took a hit!');
   });
 
   it('attacker missed', () => {

@@ -14,23 +14,8 @@ export default class GameBoard {
     ];
   }
 
-  placeShip(ship, yIndex, xIndex, horizontalAxis) {
-    let shipLength = ship.length;
-    if (horizontalAxis === true) {
-      if (xIndex + shipLength > this.grid.length) {
-        throw new Error('ship placement exceeds grid area');
-      }
-      for (let i = 0; i < shipLength; i++) {
-        this.grid[yIndex][xIndex + i] = ship;
-      }
-    } else {
-      if (yIndex + shipLength > this.grid.length) {
-        throw new Error('ship placement exceeds grid area');
-      }
-      for (let i = 0; i < shipLength; i++) {
-        this.grid[yIndex + i][xIndex] = ship;
-      }
-    }
+  placeShip(shipObj, yIndex, xIndex) {
+    this.grid[yIndex][xIndex] = shipObj;
   }
 
   receiveAttack(yIndex, xIndex) {
