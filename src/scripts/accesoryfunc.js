@@ -2,6 +2,7 @@ import game from './classes/gamemode';
 import Ship from './classes/ship';
 import { shipOrder } from './dom/shipcontainer';
 
+/* "occupied" elements into player's grid logic */
 export function createShipObj() {
   let shipObjArr = [];
   shipOrder.forEach(elem => {
@@ -14,15 +15,12 @@ export function createShipObj() {
 function returnShipObj(shipData) {
   const shipObjArr = createShipObj();
   const obj = shipObjArr.find(elem => elem.type === shipData);
-  if (obj === undefined) {
-    console.log(shipData);
-  }
   return obj;
 }
 
-export function setPlayerGrid(player) {
+export function setPlayerGrid(playerObj) {
   const filledElems = document.querySelectorAll('.filled');
-  const playerGrid = player.gameBoard;
+  const playerGrid = playerObj.gameBoard;
   if (filledElems.length === 17) {
     const shipObjArr = createShipObj();
     console.log(shipObjArr);
@@ -37,8 +35,44 @@ export function setPlayerGrid(player) {
       const xCoordinate = elemCoordinatesArr[1];
       playerGrid.placeShip(shipObj, yCoordinate, xCoordinate);
     });
-  } else {
-    console.log('ships still missing');
+    return true;
   }
-  console.log(player);
+  console.log('ships still missing');
+  return false;
 }
+
+/* logic that switches to player two placement. */
+
+function removeAllChildren(htmlArr) {
+  const length = htmlArr.children.length;
+  for (let i = 0; i < length; i++) {
+    htmlArr.removeChild(htmlArr.firstElementChild);
+  }
+}
+
+export function removePlayerUI(playerType) {
+  console.log('invoking removePlayerUI');
+  const shipContainerElemArr = document.querySelectorAll('.ship-container');
+  if (playerType === 'player one') {
+    console.log('removing player one UI');
+    const playerOneContainer = shipContainerElemArr[0].children; // class: ships and direction-btn-wrapper
+    const playerOneShips = playerOneContainer[0];
+    const playerOneDirectionBtn = playerOneContainer[1];
+    removeAllChildren(playerOneShips);
+    console.log(playerOneShips);
+    removeAllChildren(playerOneDirectionBtn);
+  }
+  if (playerType === 'player two' || playerType === 'computer') {
+    console.log('removing player two UI');
+    const playerTwoContainer = shipContainerElemArr[1].children; // class: ships and direction-btn-wrapper
+    const playerTwoShips = playerTwoContainer[0];
+    const playerTwoDirectionBtn = playerTwoContainer[1];
+    removeAllChildren(playerTwoShips);
+    console.log(playerTwoShips);
+    removeAllChildren(playerTwoDirectionBtn);
+  }
+}
+
+function switchPlayer() {}
+
+/* logic that start the game */

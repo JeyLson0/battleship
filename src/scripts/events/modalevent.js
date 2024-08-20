@@ -19,7 +19,9 @@ export function startPve(input, modal) {
   game.startGame(input);
   fillShipContainers(game.playerOne.type);
   addBtnDirectionElem(game.playerOne.type);
+  addDropZone(game.playerOne.type);
+  addDraggableEvent();
   addClearBtnEvents();
-  addContinueBtnEvent(game.mode, game);
+  addContinueBtnEvent(game.mode, game, game.playerOne);
   modal.close();
 }

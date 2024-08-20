@@ -21,10 +21,6 @@ class Game {
       this.playerTwo = new Player('computer', GameBoard);
     }
   }
-
-  placementPhase(player) {
-    this.state = 'ship placement';
-  }
 }
 
 const game = new Game();
