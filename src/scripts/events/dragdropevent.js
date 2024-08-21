@@ -1,3 +1,5 @@
+import game from '../classes/game';
+
 // global variable will contain ship elem data [direction, length, type]
 let dragData;
 
@@ -7,9 +9,16 @@ function addClassToGridElem(currentY, currentX, length, direction, type) {
   if (direction === 'horizontal') {
     for (let i = 0; i < length; i++) {
       const newXCoor = Math.floor(currentX) + i;
-      const elem = document.querySelector(
-        `div[data-coordinates="${currentY}, ${newXCoor}"`,
-      );
+      let elem;
+      if (game.state === 0) {
+        elem = document.querySelector(
+          `#player-one-grid>div[data-coordinates="${currentY}, ${newXCoor}"]`,
+        );
+      } else {
+        elem = document.querySelector(
+          `#player-two-grid>div[data-coordinates="${currentY}, ${newXCoor}"]`,
+        );
+      }
       if (newXCoor > 9 || elem.classList.contains('filled')) {
         if (elemArr.length > 0) {
           elemArr.forEach(item => item.classList.add('occupied'));
@@ -23,9 +32,16 @@ function addClassToGridElem(currentY, currentX, length, direction, type) {
   } else {
     for (let i = 0; i < length; i++) {
       const newYCoor = Math.floor(currentY) + i;
-      const elem = document.querySelector(
-        `div[data-coordinates="${newYCoor}, ${currentX}"`,
-      );
+      let elem;
+      if (game.state === 0) {
+        elem = document.querySelector(
+          `#player-one-grid>div[data-coordinates="${newYCoor}, ${currentX}"]`,
+        );
+      } else {
+        elem = document.querySelector(
+          `#player-two-grid>div[data-coordinates="${newYCoor}, ${currentX}"]`,
+        );
+      }
       if (newYCoor > 9 || elem.classList.contains('filled')) {
         if (elemArr.length > 0) {
           elemArr.forEach(item => item.classList.add('occupied'));
@@ -43,9 +59,16 @@ function removeClassFromGridElem(currentY, currentX, length, direction, type) {
   if (direction === 'horizontal') {
     for (let i = 0; i < length; i++) {
       const newXCoor = Math.floor(currentX) + i;
-      const elem = document.querySelector(
-        `div[data-coordinates="${currentY}, ${newXCoor}"`,
-      );
+      let elem;
+      if (game.state === 0) {
+        elem = document.querySelector(
+          `#player-one-grid>div[data-coordinates="${currentY}, ${newXCoor}"]`,
+        );
+      } else {
+        elem = document.querySelector(
+          `#player-two-grid>div[data-coordinates="${currentY}, ${newXCoor}"]`,
+        );
+      }
       if (newXCoor > 9 || elem.classList.contains('filled')) {
         break;
       }
@@ -56,9 +79,16 @@ function removeClassFromGridElem(currentY, currentX, length, direction, type) {
   } else {
     for (let i = 0; i < length; i++) {
       const newYCoor = Math.floor(currentY) + i;
-      const elem = document.querySelector(
-        `div[data-coordinates="${newYCoor}, ${currentX}"`,
-      );
+      let elem;
+      if (game.state === 0) {
+        elem = document.querySelector(
+          `#player-one-grid>div[data-coordinates="${newYCoor}, ${currentX}"]`,
+        );
+      } else {
+        elem = document.querySelector(
+          `#player-two-grid>div[data-coordinates="${newYCoor}, ${currentX}"]`,
+        );
+      }
       if (newYCoor > 9 || elem.classList.contains('filled')) {
         break;
       }
@@ -74,7 +104,6 @@ export function dragOverEvent(event) {
   const val = event.target.dataset.coordinates;
   const [yCoor, xCoor] = val.split(', ');
   const [direction, length, type] = dragData;
-
   addClassToGridElem(yCoor, xCoor, length, direction, type);
 }
 

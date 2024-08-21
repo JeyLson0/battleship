@@ -9,7 +9,6 @@ export function addDropZone(playerType) {
       elem.addEventListener('drop', dropEvent);
     });
   } else {
-    console.log(playerType);
     const grid = document.getElementById('player-two-grid');
     const gridElems = [...grid.children];
     gridElems.forEach(elem => {

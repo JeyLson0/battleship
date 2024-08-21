@@ -1,4 +1,4 @@
-import game from './classes/gamemode';
+import game from './classes/game';
 import Ship from './classes/ship';
 import { shipOrder } from './dom/shipcontainer';
 
@@ -23,8 +23,6 @@ export function setPlayerGrid(playerObj) {
   const playerGrid = playerObj.gameBoard;
   if (filledElems.length === 17) {
     const shipObjArr = createShipObj();
-    console.log(shipObjArr);
-    console.log(playerGrid);
     filledElems.forEach(elem => {
       const elemCoordinatesArr = elem
         .getAttribute('data-coordinates')
@@ -37,7 +35,6 @@ export function setPlayerGrid(playerObj) {
     });
     return true;
   }
-  console.log('ships still missing');
   return false;
 }
 
@@ -51,7 +48,6 @@ function removeAllChildren(htmlArr) {
 }
 
 export function removePlayerUI(playerType) {
-  console.log('invoking removePlayerUI');
   const shipContainerElemArr = document.querySelectorAll('.ship-container');
   if (playerType === 'player one') {
     console.log('removing player one UI');
@@ -59,7 +55,6 @@ export function removePlayerUI(playerType) {
     const playerOneShips = playerOneContainer[0];
     const playerOneDirectionBtn = playerOneContainer[1];
     removeAllChildren(playerOneShips);
-    console.log(playerOneShips);
     removeAllChildren(playerOneDirectionBtn);
   }
   if (playerType === 'player two' || playerType === 'computer') {
@@ -68,11 +63,7 @@ export function removePlayerUI(playerType) {
     const playerTwoShips = playerTwoContainer[0];
     const playerTwoDirectionBtn = playerTwoContainer[1];
     removeAllChildren(playerTwoShips);
-    console.log(playerTwoShips);
     removeAllChildren(playerTwoDirectionBtn);
   }
 }
-
-function switchPlayer() {}
-
 /* logic that start the game */

@@ -31,7 +31,7 @@ export function fillShipContainers(playerType) {
       ships[0].appendChild(shipElem);
     }
   }
-  if (playerType === 'player two') {
+  if (playerType === 'player two' || playerType === 'computer') {
     for (let i = 0; i < 5; i++) {
       let shipElem = createShipElemWrapper(shipOrder[i]);
       ships[1].appendChild(shipElem);
@@ -58,5 +58,6 @@ export function addBtnDirectionElem(playerType) {
   if (playerType === 'player two' || playerType === 'computer') {
     let elem = createBtnDirection();
     directionBtnArr[1].appendChild(elem);
+    addDirectionalEvent();
   }
 }

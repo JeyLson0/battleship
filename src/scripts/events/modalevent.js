@@ -1,4 +1,4 @@
-import game from '../classes/gamemode';
+import game from '../classes/game';
 import { addDropZone, removeDropZone } from './gridevents';
 import { fillShipContainers, addBtnDirectionElem } from '../dom/shipcontainer';
 import addDraggableEvent from './dragdropevent';
@@ -11,7 +11,7 @@ export function startPvp(input, modal) {
   addDropZone(game.playerOne.type);
   addDraggableEvent();
   addClearBtnEvents();
-  addContinueBtnEvent(game.mode, game, game.playerOne);
+  addContinueBtnEvent();
   modal.close();
 }
 
