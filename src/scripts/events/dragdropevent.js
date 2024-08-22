@@ -1,4 +1,5 @@
 import game from '../classes/game';
+import updateStatus from './statusevents';
 
 // global variable will contain ship elem data [direction, length, type]
 let dragData;
@@ -23,8 +24,14 @@ function addClassToGridElem(currentY, currentX, length, direction, type) {
         if (elemArr.length > 0) {
           elemArr.forEach(item => item.classList.add('occupied'));
         }
+        if (newXCoor > 9) {
+          updateStatus(game, false, 1);
+        } else {
+          updateStatus(game, false, 2);
+        }
         break;
       }
+      updateStatus(game);
       elemArr.push(elem);
       elem.classList.add('dragover');
       elem.setAttribute('data-ship', type);
@@ -46,13 +53,27 @@ function addClassToGridElem(currentY, currentX, length, direction, type) {
         if (elemArr.length > 0) {
           elemArr.forEach(item => item.classList.add('occupied'));
         }
+        if (newYCoor > 9) {
+          updateStatus(game, false, 1);
+        } else {
+          updateStatus(game, false, 2);
+        }
         break;
       }
+      updateStatus(game);
       elemArr.push(elem);
       elem.classList.add('dragover');
       elem.setAttribute('data-ship', type);
     }
   }
+}
+
+export function dragOverEvent(event) {
+  event.preventDefault();
+  const val = event.target.dataset.coordinates;
+  const [yCoor, xCoor] = val.split(', ');
+  const [direction, length, type] = dragData;
+  addClassToGridElem(yCoor, xCoor, length, direction, type);
 }
 
 function removeClassFromGridElem(currentY, currentX, length, direction, type) {
@@ -97,14 +118,6 @@ function removeClassFromGridElem(currentY, currentX, length, direction, type) {
       elem.removeAttribute('data-ship', type);
     }
   }
-}
-
-export function dragOverEvent(event) {
-  event.preventDefault();
-  const val = event.target.dataset.coordinates;
-  const [yCoor, xCoor] = val.split(', ');
-  const [direction, length, type] = dragData;
-  addClassToGridElem(yCoor, xCoor, length, direction, type);
 }
 
 export function dragLeaveEvent(event) {

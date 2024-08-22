@@ -3,6 +3,7 @@ import { removePlayerUI, setPlayerGrid } from '../accesoryfunc';
 import { removeDropZone, addDropZone } from './gridevents';
 import { fillShipContainers, addBtnDirectionElem } from '../dom/shipcontainer';
 import game from '../classes/game';
+import updateStatus from './statusevents';
 /* clear btn */
 
 function clearGridElems() {
@@ -51,12 +52,17 @@ function continueBtnEvent() {
         removeDropZone(playerOne.type);
         switchPlayerTwo();
         game.statePlayerTwoPlacement();
+        updateStatus(game);
+        return;
       }
     }
     if (game.state === 1) {
       if (setPlayerGrid(playerTwo)) {
-        // start game function -> player one start first
+        removePlayerUI(playerTwo.type);
+        removeDropZone(playerTwo.type);
         game.statePlayerOneTurn();
+        updateStatus(game);
+        console.log(game);
         console.log('start the game');
       }
     }

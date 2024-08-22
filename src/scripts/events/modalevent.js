@@ -3,6 +3,7 @@ import { addDropZone, removeDropZone } from './gridevents';
 import { fillShipContainers, addBtnDirectionElem } from '../dom/shipcontainer';
 import addDraggableEvent from './dragdropevent';
 import { addClearBtnEvents, addContinueBtnEvent } from './uibtnevent';
+import updateStatus from './statusevents';
 
 export function startPvp(input, modal) {
   game.startGame(input);
@@ -12,6 +13,7 @@ export function startPvp(input, modal) {
   addDraggableEvent();
   addClearBtnEvents();
   addContinueBtnEvent();
+  updateStatus(game);
   modal.close();
 }
 
@@ -23,5 +25,6 @@ export function startPve(input, modal) {
   addDraggableEvent();
   addClearBtnEvents();
   addContinueBtnEvent(game.mode, game, game.playerOne);
+  updateStatus(game);
   modal.close();
 }

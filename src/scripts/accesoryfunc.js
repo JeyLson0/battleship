@@ -22,7 +22,6 @@ export function setPlayerGrid(playerObj) {
   const filledElems = document.querySelectorAll('.filled');
   const playerGrid = playerObj.gameBoard;
   if (filledElems.length === 17) {
-    const shipObjArr = createShipObj();
     filledElems.forEach(elem => {
       const elemCoordinatesArr = elem
         .getAttribute('data-coordinates')
@@ -33,13 +32,14 @@ export function setPlayerGrid(playerObj) {
       const xCoordinate = elemCoordinatesArr[1];
       playerGrid.placeShip(shipObj, yCoordinate, xCoordinate);
     });
+    console.log(playerObj);
     return true;
   }
+  console.log(playerObj);
   return false;
 }
 
 /* logic that switches to player two placement. */
-
 function removeAllChildren(htmlArr) {
   const length = htmlArr.children.length;
   for (let i = 0; i < length; i++) {
@@ -66,4 +66,3 @@ export function removePlayerUI(playerType) {
     removeAllChildren(playerTwoDirectionBtn);
   }
 }
-/* logic that start the game */
