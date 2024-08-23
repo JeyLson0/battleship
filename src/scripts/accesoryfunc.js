@@ -12,22 +12,22 @@ export function createShipObj() {
   return shipObjArr;
 }
 
-function returnShipObj(shipData) {
-  const shipObjArr = createShipObj();
-  const obj = shipObjArr.find(elem => elem.type === shipData);
+function returnShipObj(shipData, objArr) {
+  const obj = objArr.find(elem => elem.type === shipData);
   return obj;
 }
 
 export function setPlayerGrid(playerObj) {
   const filledElems = document.querySelectorAll('.filled');
   const playerGrid = playerObj.gameBoard;
+  const shipObjArr = createShipObj();
   if (filledElems.length === 17) {
     filledElems.forEach(elem => {
       const elemCoordinatesArr = elem
         .getAttribute('data-coordinates')
         .split(', ');
       const elemShipType = elem.getAttribute('data-ship');
-      const shipObj = returnShipObj(elemShipType);
+      const shipObj = returnShipObj(elemShipType, shipObjArr);
       const yCoordinate = elemCoordinatesArr[0];
       const xCoordinate = elemCoordinatesArr[1];
       playerGrid.placeShip(shipObj, yCoordinate, xCoordinate);

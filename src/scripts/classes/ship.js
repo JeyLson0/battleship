@@ -7,15 +7,16 @@ export default class Ship {
     this.sunk = false;
   }
 
-  hit = () => {
+  hit() {
     this.hits += 1;
-  };
+  }
 
-  isSunk = () => {
+  isSunk() {
     if (this.length === this.hits || this.length < this.hits) {
       this.sunk = true;
     }
-  };
+    return this.sunk;
+  }
 }
 
 // battle ship length 4

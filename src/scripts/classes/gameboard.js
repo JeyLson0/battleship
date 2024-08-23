@@ -19,15 +19,11 @@ export default class GameBoard {
   }
 
   receiveAttack(yIndex, xIndex) {
-    // -1 represents ship hit.
     if (typeof this.grid[yIndex][xIndex] === 'object') {
       this.grid[yIndex][xIndex].hit();
-      this.grid[yIndex][xIndex] = -1;
-      return 'ship took a hit!';
+      return true;
     }
-    // 2 represents missed shot
-    this.grid[yIndex][xIndex] = 2;
-    return 'miss!';
+    return false;
   }
 
   scanBoard() {

@@ -1,7 +1,7 @@
 import GameBoard from './gameboard';
 import Player from './player';
 
-class Game {
+export class Game {
   constructor() {
     this.mode = null;
     this.playerOne = null;

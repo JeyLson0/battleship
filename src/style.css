@@ -145,7 +145,6 @@ div[draggable] {
 }
 
 /* draggable elements */
-
 .dragging {
     opacity: 0.4;
     background: red;
@@ -162,3 +161,11 @@ div[draggable] {
 .occupied {
     background: red;
 }
+
+
+/* game events */
+
+.hover {
+    background: gray
+}
+

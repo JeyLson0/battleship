@@ -4,6 +4,7 @@ import { removeDropZone, addDropZone } from './gridevents';
 import { fillShipContainers, addBtnDirectionElem } from '../dom/shipcontainer';
 import game from '../classes/game';
 import updateStatus from './statusevents';
+import { startInitTurn } from './gameevent';
 /* clear btn */
 
 function clearGridElems() {
@@ -62,7 +63,7 @@ function continueBtnEvent() {
         removeDropZone(playerTwo.type);
         game.statePlayerOneTurn();
         updateStatus(game);
-        console.log(game);
+        startInitTurn();
         console.log('start the game');
       }
     }

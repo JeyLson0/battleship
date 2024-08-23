@@ -40,11 +40,11 @@ describe('gameboard receiveAttack', () => {
   gameboard.placeShip(destroyer, 0, 0);
 
   it('ship took a hit', () => {
-    expect(gameboard.receiveAttack(0, 0)).toBe('ship took a hit!');
+    expect(gameboard.receiveAttack(0, 0)).toBe(true);
   });
 
   it('attacker missed', () => {
-    expect(gameboard.receiveAttack(1, 3)).toBe('miss!');
+    expect(gameboard.receiveAttack(1, 3)).toBe(false);
   });
 });
 
