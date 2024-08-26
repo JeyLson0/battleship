@@ -4,11 +4,13 @@ import { fillShipContainers, addBtnDirectionElem } from '../dom/shipcontainer';
 import addDraggableEvent from './dragdropevent';
 import { addClearBtnEvents, addContinueBtnEvent } from './uibtnevent';
 import updateStatus from './statusevents';
+import { createShipBtnUI } from '../dom/uibtns';
 
 export function startPvp(input, modal) {
   game.startGame(input);
   fillShipContainers(game.playerOne.type);
   addBtnDirectionElem(game.playerOne.type);
+  createShipBtnUI();
   addDropZone(game.playerOne.type);
   addDraggableEvent();
   addClearBtnEvents();
@@ -21,6 +23,7 @@ export function startPve(input, modal) {
   game.startGame(input);
   fillShipContainers(game.playerOne.type);
   addBtnDirectionElem(game.playerOne.type);
+  createShipBtnUI();
   addDropZone(game.playerOne.type);
   addDraggableEvent();
   addClearBtnEvents();

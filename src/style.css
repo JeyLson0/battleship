@@ -23,7 +23,7 @@ body {
 /* CSS starts here */
 
 /* dialog */
-#opening-dialog {
+#game-dialog {
     position: absolute;
     margin: auto;
     min-width: 15rem;

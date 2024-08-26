@@ -7,6 +7,10 @@ import updateStatus from './statusevents';
 
 const gameObj = game;
 
+/* function endGame(gameObj) {
+  game.stateEndGame
+} */
+
 // player one grid click event
 function playerOneGridElemEvent(event) {
   const elem = event.target;
@@ -34,7 +38,10 @@ function playerOneGridElemEvent(event) {
       gameObj.statePlayerOneTurn();
     }
   }
-  playerOneGameboard.scanBoard();
+  const gameover = playerOneGameboard.scanBoard();
+  if (gameover) {
+    // game over func
+  }
 }
 
 // player two grid click event
@@ -67,7 +74,10 @@ function playerTwoGridElemEvent(event) {
       gameObj.stateComputerTurn();
     }
   }
-  playerTwoGameboard.scanBoard();
+  const gameover = playerTwoGameboard.scanBoard();
+  if (gameover) {
+    // something
+  }
 }
 
 // add events to all grid elem

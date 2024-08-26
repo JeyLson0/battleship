@@ -44,8 +44,9 @@ export default class GameBoard {
     }
     if (shipCoordinates.length > 0) {
       console.log('grid still contains ships');
-      return shipCoordinates;
+      return true;
     }
-    return console.log('grid is clear. game over!');
+    console.log('grid is clear. game over!');
+    return false;
   }
 }

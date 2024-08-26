@@ -5,6 +5,7 @@ import { fillShipContainers, addBtnDirectionElem } from '../dom/shipcontainer';
 import game from '../classes/game';
 import updateStatus from './statusevents';
 import startInitTurn from './gameevent';
+import { removeShipBtnUI } from '../dom/uibtns';
 
 /* clear btn */
 function clearGridElems() {
@@ -64,6 +65,7 @@ function continueBtnEvent() {
         game.statePlayerOneTurn();
         updateStatus(game);
         startInitTurn();
+        removeShipBtnUI();
         console.log('start the game');
       }
     }
