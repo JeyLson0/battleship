@@ -169,3 +169,10 @@ div[draggable] {
     background: gray
 }
 
+.attacked {
+    background-color: teal;
+}
+
+.attacked.hit {
+    background-color: red;
+}

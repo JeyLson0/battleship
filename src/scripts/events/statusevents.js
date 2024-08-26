@@ -41,22 +41,28 @@ export default function updateStatus(gameObj, bool = undefined, status = 0) {
     case 3:
       turnStatusBar.textContent = `Player one's turn.`;
       gameStatusBar.textContent = '';
+      if (bool === undefined && status === 1) {
+        gameStatusBar.textContent = 'Cell already attacked!';
+      }
+      if (bool === undefined && status === 2) {
+        gameStatusBar.textContent = `Wrong grid.`;
+      }
       if (bool === true && status === 0) {
         gameStatusBar.textContent = 'Hit!';
       }
-      if (bool === true && status === 1) {
+      if (bool === true && status === 'destroyer') {
         gameStatusBar.textContent = 'Hit! Destroyer destroyed!';
       }
-      if (bool === true && status === 2) {
+      if (bool === true && status === 'submarine') {
         gameStatusBar.textContent = 'Hit! Submarine destroyed!';
       }
-      if (bool === true && status === 3) {
+      if (bool === true && status === 'cruiser') {
         gameStatusBar.textContent = 'Hit! Cruiser destroyed!';
       }
-      if (bool === true && status === 4) {
+      if (bool === true && status === 'carrier') {
         gameStatusBar.textContent = 'Hit! Carrier destroyed!';
       }
-      if (bool === true && status === 5) {
+      if (bool === true && status === 'battleship') {
         gameStatusBar.textContent = 'Hit! Battleship destroyed!';
       }
       if (bool === false) {
@@ -72,22 +78,28 @@ export default function updateStatus(gameObj, bool = undefined, status = 0) {
     // Player two's turn
     case 4:
       turnStatusBar.textContent = `Player two's turn.`;
+      if (bool === undefined && status === 1) {
+        gameStatusBar.textContent = 'Cell already attacked!';
+      }
+      if (bool === undefined && status === 2) {
+        gameStatusBar.textContent = `Wrong grid.`;
+      }
       if (bool === true && status === 0) {
         gameStatusBar.textContent = 'Hit!';
       }
-      if (bool === true && status === 1) {
+      if (bool === true && status === 'destroyer') {
         gameStatusBar.textContent = 'Hit! Destroyer destroyed!';
       }
-      if (bool === true && status === 2) {
+      if (bool === true && status === 'submarine') {
         gameStatusBar.textContent = 'Hit! Submarine destroyed!';
       }
-      if (bool === true && status === 3) {
+      if (bool === true && status === 'cruiser') {
         gameStatusBar.textContent = 'Hit! Cruiser destroyed!';
       }
-      if (bool === true && status === 4) {
+      if (bool === true && status === 'carrier') {
         gameStatusBar.textContent = 'Hit! Carrier destroyed!';
       }
-      if (bool === true && status === 5) {
+      if (bool === true && status === 'battleship') {
         gameStatusBar.textContent = 'Hit! Battleship destroyed!';
       }
       if (bool === false) {
@@ -101,19 +113,19 @@ export default function updateStatus(gameObj, bool = undefined, status = 0) {
       if (bool === true && status === 0) {
         gameStatusBar.textContent = 'Hit!';
       }
-      if (bool === true && status === 1) {
+      if (bool === true && status === 'destroyer') {
         gameStatusBar.textContent = 'Hit! Destroyer destroyed!';
       }
-      if (bool === true && status === 2) {
+      if (bool === true && status === 'submarine') {
         gameStatusBar.textContent = 'Hit! Submarine destroyed!';
       }
-      if (bool === true && status === 3) {
+      if (bool === true && status === 'cruiser') {
         gameStatusBar.textContent = 'Hit! Cruiser destroyed!';
       }
-      if (bool === true && status === 4) {
+      if (bool === true && status === 'carrier') {
         gameStatusBar.textContent = 'Hit! Carrier destroyed!';
       }
-      if (bool === true && status === 5) {
+      if (bool === true && status === 'battleship') {
         gameStatusBar.textContent = 'Hit! Battleship destroyed!';
       }
       if (bool === false) {

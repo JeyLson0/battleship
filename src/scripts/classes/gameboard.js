@@ -18,6 +18,10 @@ export default class GameBoard {
     this.grid[yIndex][xIndex] = shipObj;
   }
 
+  removeShip(yIndex, xIndex) {
+    this.grid[yIndex][xIndex] = 0;
+  }
+
   receiveAttack(yIndex, xIndex) {
     if (typeof this.grid[yIndex][xIndex] === 'object') {
       this.grid[yIndex][xIndex].hit();
@@ -42,6 +46,6 @@ export default class GameBoard {
       console.log('grid still contains ships');
       return shipCoordinates;
     }
-    return 'grid is clear';
+    return console.log('grid is clear. game over!');
   }
 }

@@ -4,9 +4,9 @@ import { removeDropZone, addDropZone } from './gridevents';
 import { fillShipContainers, addBtnDirectionElem } from '../dom/shipcontainer';
 import game from '../classes/game';
 import updateStatus from './statusevents';
-import { startInitTurn } from './gameevent';
-/* clear btn */
+import startInitTurn from './gameevent';
 
+/* clear btn */
 function clearGridElems() {
   const gridElems = document.querySelectorAll('.grid-elem.filled');
   gridElems.forEach(elem => {
