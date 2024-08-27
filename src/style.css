@@ -23,7 +23,7 @@ body {
 /* CSS starts here */
 
 /* dialog */
-#game-dialog {
+.modal {
     position: absolute;
     margin: auto;
     min-width: 15rem;

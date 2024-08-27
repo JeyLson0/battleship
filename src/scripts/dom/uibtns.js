@@ -16,7 +16,7 @@ function createBtnElem(wrapper) {
   }
 }
 
-function createPlayBtn() {
+export function createPlayBtn() {
   let btn = document.createElement('button');
   playBtn.appendChild(btn);
   btn.setAttribute('id', 'play-btn');

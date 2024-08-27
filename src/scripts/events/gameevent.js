@@ -1,5 +1,6 @@
 import game from '../classes/game';
 import updateStatus from './statusevents';
+import openEndModal from '../dom/endgamemodal';
 
 // state 3 - player one turn
 // state 4 - player two turn
@@ -7,9 +8,11 @@ import updateStatus from './statusevents';
 
 const gameObj = game;
 
-/* function endGame(gameObj) {
-  game.stateEndGame
-} */
+function endGame(playerType) {
+  gameObj.stateEndGame(playerType);
+  openEndModal();
+  gameObj.statePlayerOnePlacement();
+}
 
 // player one grid click event
 function playerOneGridElemEvent(event) {
@@ -40,7 +43,11 @@ function playerOneGridElemEvent(event) {
   }
   const gameover = playerOneGameboard.scanBoard();
   if (gameover) {
-    // game over func
+    if (gameObj.mode === 'pvp') {
+      endGame('Player Two');
+    } else {
+      endGame(`Computer`);
+    }
   }
 }
 
@@ -76,7 +83,7 @@ function playerTwoGridElemEvent(event) {
   }
   const gameover = playerTwoGameboard.scanBoard();
   if (gameover) {
-    // something
+    endGame(`Player One`);
   }
 }
 

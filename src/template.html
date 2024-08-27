@@ -9,15 +9,16 @@
     <header class="header-title-container">
         <h1 class="header-title">BATTLE SHIP</h1>
     </header>
-    <dialog id="game-dialog" data-keyboard="false">
+    <dialog id="game-dialog" class="modal">
         <div class="dialog-btn-container">
             <button type="button" value="pvp" class="dialog-btn pvp-btn">Player vs Player</button>
             <button type="button" value="pve" class="dialog-btn pve-btn">Player vs Computer</button>
         </div>
     </dialog>
-    <dialog id="endgame-dialog">
-        <div class="dialog-btn-container">
-            <p class=""></p>
+    <dialog id="endgame-dialog" class="modal">
+        <div id="announcement-wrapper" class="endgame-dialog-wrapper">
+        </div>
+        <div id="restart-btn-wrapper" class="endgame-dialog-wrapper">
         </div>
     </dialog>
     <div class="main-container">

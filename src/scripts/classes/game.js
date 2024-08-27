@@ -7,6 +7,7 @@ export class Game {
     this.playerOne = null;
     this.playerTwo = null;
     this.state = null;
+    this.winner = null;
   }
 
   startGame(htmlInput) {
@@ -22,6 +23,14 @@ export class Game {
       this.playerTwo = new Player('computer', GameBoard);
       this.statePlayerOnePlacement();
     }
+  }
+
+  restartGame() {
+    this.mode = null;
+    this.playerOne = null;
+    this.playerTwo = null;
+    this.state = null;
+    this.winner = null;
   }
 
   statePlayerOnePlacement() {
@@ -48,8 +57,9 @@ export class Game {
     this.state = 5;
   }
 
-  stateEndGame() {
+  stateEndGame(player) {
     this.state = 6;
+    this.winner = player;
   }
 }
 
