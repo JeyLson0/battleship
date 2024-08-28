@@ -1,5 +1,5 @@
 import addDraggableEvent from './dragdropevent';
-import { removePlayerUI, setPlayerGrid } from '../accesoryfunc';
+import { removePlayerUI, setPlayerGrid, createShipObj } from '../accesoryfunc';
 import { removeDropZone, addDropZone } from './gridevents';
 import { fillShipContainers, addBtnDirectionElem } from '../dom/shipcontainer';
 import game from '../classes/game';
@@ -43,6 +43,14 @@ function switchPlayerTwo() {
   addClearBtnEvents();
 }
 
+function computerPlaceShips(playerTwoObj) {
+  const shipObjArr = createShipObj();
+  const playerTwoGameboard = playerTwoObj.gameBoard;
+  shipObjArr.forEach(ship => {
+    playerTwoGameboard.placeRandomShip(ship);
+  });
+}
+
 function continueBtnEvent() {
   const gamemode = game.mode;
   const playerOne = game.playerOne;
@@ -71,7 +79,18 @@ function continueBtnEvent() {
     }
   }
   if (gamemode === 'pve') {
-    game.stateComputerPlacement();
+    if (game.state === 0) {
+      if (setPlayerGrid(playerOne)) {
+        removePlayerUI(playerOne.type);
+        removeDropZone(playerOne.type);
+        game.statePlayerOneTurn();
+        computerPlaceShips(playerTwo);
+        updateStatus(game);
+        startInitTurn();
+        removeShipBtnUI();
+        console.log(playerTwo);
+      }
+    }
   }
 }
 

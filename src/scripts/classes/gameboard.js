@@ -49,4 +49,44 @@ export default class GameBoard {
     console.log('grid is clear. game over!');
     return true;
   }
+
+  placeRandomShip(ship) {
+    const yCoor = Math.floor(Math.random() * 10);
+    const xCoor = Math.floor(Math.random() * 10);
+    const direction = Math.floor(Math.random() * 2);
+
+    if (direction === 0) {
+      // horizontal
+      for (let i = 0; i < ship.length; i++) {
+        const newXCoor = xCoor + i;
+        if (newXCoor > 9) {
+          return this.placeRandomShip(ship);
+        }
+        const elem = this.grid[yCoor][newXCoor];
+        if (elem !== 0) {
+          return this.placeRandomShip(ship);
+        }
+      }
+      for (let j = 0; j < ship.length; j++) {
+        this.grid[yCoor][xCoor + j] = ship;
+      }
+    } else {
+      // vertical
+      for (let i = 0; i < ship.length; i++) {
+        const newYCoor = yCoor + i;
+        if (newYCoor > 9) {
+          return this.placeRandomShip(ship);
+        }
+        const elem = this.grid[newYCoor][xCoor];
+        if (elem !== 0) {
+          return this.placeRandomShip(ship);
+        }
+      }
+      for (let j = 0; j < ship.length; j++) {
+        this.grid[yCoor + j][xCoor] = ship;
+      }
+    }
+
+    return this.grid;
+  }
 }

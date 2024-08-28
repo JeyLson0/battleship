@@ -6,8 +6,12 @@ export default class Player {
       throw new Error('argument should be player or computer');
     }
     this.type = type;
-    this.name = null;
-    this.turn = null;
     this.gameBoard = new Class();
   }
+
+  getRandomNum() {
+    return Math.floor(Math.random() * 10);
+  }
+
+  play() {}
 }

@@ -1,4 +1,3 @@
-import game from './classes/game';
 import Ship from './classes/ship';
 import { shipOrder } from './dom/shipcontainer';
 
@@ -50,7 +49,6 @@ function removeAllChildren(htmlArr) {
 export function removePlayerUI(playerType) {
   const shipContainerElemArr = document.querySelectorAll('.ship-container');
   if (playerType === 'player one') {
-    console.log('removing player one UI');
     const playerOneContainer = shipContainerElemArr[0].children; // class: ships and direction-btn-wrapper
     const playerOneShips = playerOneContainer[0];
     const playerOneDirectionBtn = playerOneContainer[1];
@@ -58,7 +56,6 @@ export function removePlayerUI(playerType) {
     removeAllChildren(playerOneDirectionBtn);
   }
   if (playerType === 'player two' || playerType === 'computer') {
-    console.log('removing player two UI');
     const playerTwoContainer = shipContainerElemArr[1].children; // class: ships and direction-btn-wrapper
     const playerTwoShips = playerTwoContainer[0];
     const playerTwoDirectionBtn = playerTwoContainer[1];
