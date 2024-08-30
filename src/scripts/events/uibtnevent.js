@@ -74,7 +74,6 @@ function continueBtnEvent() {
         updateStatus(game);
         startInitTurn();
         removeShipBtnUI();
-        console.log('start the game');
       }
     }
   }
@@ -88,7 +87,6 @@ function continueBtnEvent() {
         updateStatus(game);
         startInitTurn();
         removeShipBtnUI();
-        console.log(playerTwo);
       }
     }
   }

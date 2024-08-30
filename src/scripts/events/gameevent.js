@@ -14,6 +14,16 @@ function endGame(playerType) {
   gameObj.statePlayerOnePlacement();
 }
 
+function compAttack(playerOne) {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      const computer = gameObj.playerTwo;
+      const compMove = computer.playMove(playerOne);
+      resolve(compMove);
+    }, 500);
+  });
+}
+
 // player one grid click event
 function playerOneGridElemEvent(event) {
   const elem = event.target;
@@ -24,7 +34,7 @@ function playerOneGridElemEvent(event) {
   if (elem.classList.contains('attacked')) {
     return console.log('grid cell already attacked.');
   }
-  if (gameObj.state === 4 || gameObj.state === 5) {
+  if (gameObj.state === 4) {
     elem.classList.add('attacked');
     const hit = playerOneGameboard.receiveAttack(yCoor, xCoor); // Bool
     if (hit) {
@@ -52,7 +62,7 @@ function playerOneGridElemEvent(event) {
 }
 
 // player two grid click event
-function playerTwoGridElemEvent(event) {
+async function playerTwoGridElemEvent(event) {
   const elem = event.target;
   const data = elem.dataset.coordinates.split(', ');
   const yCoor = Math.floor(data[0]);
@@ -77,8 +87,21 @@ function playerTwoGridElemEvent(event) {
       updateStatus(gameObj, false);
       gameObj.statePlayerTwoTurn();
     } else {
-      updateStatus(gameObj, false);
       gameObj.stateComputerTurn();
+      updateStatus(gameObj, false);
+      while (true) {
+        updateStatus(gameObj);
+        const computerHit = await compAttack(gameObj.playerOne);
+        if (!computerHit) {
+          break;
+        }
+        const playerOneGameover = gameObj.playerOne.gameBoard.scanBoard();
+        if (playerOneGameover) {
+          endGame('Computer');
+          break;
+        }
+      }
+      gameObj.statePlayerOneTurn();
     }
   }
   const gameover = playerTwoGameboard.scanBoard();
@@ -121,7 +144,6 @@ function removeGridElemEvent() {
 
 // once all grid board is set. Start initial turn with player one
 export default function startInitTurn() {
-  console.log('start init');
   game.statePlayerOneTurn();
   addEventToGridElem();
 }

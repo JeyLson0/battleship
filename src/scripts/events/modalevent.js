@@ -9,15 +9,12 @@ import { createShipBtnUI } from '../dom/uibtns';
 // if restarting the game, remove all clear all grid-elem classes
 function clearGridElemClass() {
   const gridElems = document.querySelectorAll('.attacked');
-  console.log(gridElems);
   gridElems.forEach(elem => {
     elem.classList.remove('attacked');
     if (elem.classList.contains('hit')) {
       elem.classList.remove('hit');
     }
   });
-  const gridElem = document.querySelectorAll('.grid-elem');
-  console.log(gridElem);
 }
 
 function clearEndGameModal() {

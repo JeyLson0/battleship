@@ -31,10 +31,8 @@ export function setPlayerGrid(playerObj) {
       const xCoordinate = elemCoordinatesArr[1];
       playerGrid.placeShip(shipObj, yCoordinate, xCoordinate);
     });
-    console.log(playerObj);
     return true;
   }
-  console.log(playerObj);
   return false;
 }
 
