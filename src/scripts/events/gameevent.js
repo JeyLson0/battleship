@@ -11,7 +11,6 @@ const gameObj = game;
 function endGame(playerType) {
   gameObj.stateEndGame(playerType);
   openEndModal();
-  gameObj.statePlayerOnePlacement();
 }
 
 function compAttack(playerOne) {
@@ -20,7 +19,7 @@ function compAttack(playerOne) {
       const computer = gameObj.playerTwo;
       const compMove = computer.playMove(playerOne);
       resolve(compMove);
-    }, 500);
+    }, 800);
   });
 }
 
@@ -127,7 +126,7 @@ function addEventToGridElem() {
 }
 
 // removes entire grid elem event
-function removeGridElemEvent() {
+export function removeGridElemEvent() {
   const playerOneGrid = document.querySelectorAll(
     '#player-one-grid>.grid-elem',
   );

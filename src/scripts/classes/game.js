@@ -33,6 +33,10 @@ export class Game {
     this.winner = null;
   }
 
+  gameStateNull() {
+    this.state = null;
+  }
+
   statePlayerOnePlacement() {
     this.state = 0;
   }
