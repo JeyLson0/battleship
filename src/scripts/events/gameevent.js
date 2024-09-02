@@ -25,15 +25,15 @@ function compAttack(playerOne) {
 
 // player one grid click event
 function playerOneGridElemEvent(event) {
-  const elem = event.target;
-  const data = elem.dataset.coordinates.split(', ');
-  const yCoor = Math.floor(data[0]);
-  const xCoor = Math.floor(data[1]);
-  const playerOneGameboard = gameObj.playerOne.gameBoard;
-  if (elem.classList.contains('attacked')) {
-    return console.log('grid cell already attacked.');
-  }
   if (gameObj.state === 4) {
+    const elem = event.target;
+    const data = elem.dataset.coordinates.split(', ');
+    const yCoor = Math.floor(data[0]);
+    const xCoor = Math.floor(data[1]);
+    const playerOneGameboard = gameObj.playerOne.gameBoard;
+    if (elem.classList.contains('attacked')) {
+      return console.log('grid cell already attacked.');
+    }
     elem.classList.add('attacked');
     const hit = playerOneGameboard.receiveAttack(yCoor, xCoor); // Bool
     if (hit) {
@@ -49,30 +49,31 @@ function playerOneGridElemEvent(event) {
       updateStatus(gameObj, false);
       gameObj.statePlayerOneTurn();
     }
-  }
-  const gameover = playerOneGameboard.scanBoard();
-  if (gameover) {
-    if (gameObj.mode === 'pvp') {
-      endGame('Player Two');
-    } else {
-      endGame(`Computer`);
+    const gameover = playerOneGameboard.scanBoard();
+    if (gameover) {
+      if (gameObj.mode === 'pvp') {
+        endGame('Player Two');
+      } else {
+        endGame(`Computer`);
+      }
     }
   }
 }
 
 // player two grid click event
 async function playerTwoGridElemEvent(event) {
-  const elem = event.target;
-  const data = elem.dataset.coordinates.split(', ');
-  const yCoor = Math.floor(data[0]);
-  const xCoor = Math.floor(data[1]);
-  const playerTwoGameboard = gameObj.playerTwo.gameBoard;
-  if (elem.classList.contains('attacked')) {
-    return console.log('grid cell already attacked.');
-  }
   if (gameObj.state === 3) {
+    const elem = event.target;
+    const data = elem.dataset.coordinates.split(', ');
+    const yCoor = Math.floor(data[0]);
+    const xCoor = Math.floor(data[1]);
+    const playerTwoGameboard = gameObj.playerTwo.gameBoard;
+    if (elem.classList.contains('attacked')) {
+      return console.log('grid cell already attacked.');
+    }
     elem.classList.add('attacked');
     const hit = playerTwoGameboard.receiveAttack(yCoor, xCoor); // Bool
+
     if (hit) {
       elem.classList.add('hit');
       const shipObj = playerTwoGameboard.grid[yCoor][xCoor];
@@ -102,10 +103,11 @@ async function playerTwoGridElemEvent(event) {
       }
       gameObj.statePlayerOneTurn();
     }
-  }
-  const gameover = playerTwoGameboard.scanBoard();
-  if (gameover) {
-    endGame(`Player One`);
+
+    const gameover = playerTwoGameboard.scanBoard();
+    if (gameover) {
+      endGame(`Player One`);
+    }
   }
 }
 
@@ -122,22 +124,6 @@ function addEventToGridElem() {
   });
   playerTwoGrid.forEach(gridElem => {
     gridElem.addEventListener('click', playerTwoGridElemEvent);
-  });
-}
-
-// removes entire grid elem event
-export function removeGridElemEvent() {
-  const playerOneGrid = document.querySelectorAll(
-    '#player-one-grid>.grid-elem',
-  );
-  const playerTwoGrid = document.querySelectorAll(
-    '#player-two-grid>.grid-elem',
-  );
-  playerOneGrid.forEach(gridElem => {
-    gridElem.removeEventListener('click', playerOneGridElemEvent);
-  });
-  playerTwoGrid.forEach(gridElem => {
-    gridElem.removeEventListener('click', playerTwoGridElemEvent);
   });
 }
 
