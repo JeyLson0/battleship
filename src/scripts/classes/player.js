@@ -56,7 +56,7 @@ export default class Player {
     const playerOneGameBoard = playerOne.gameBoard;
 
     if (this.hitStack.length > 0) {
-      const lastValStack = this.hitStack.shift();
+      const lastValStack = this.hitStack.pop();
       const yValStack = lastValStack[0];
       const xValStack = lastValStack[1];
       const searchStackMove = this.searchMove(lastValStack);
