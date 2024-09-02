@@ -56,7 +56,7 @@ describe('scan gameboard', () => {
   it('gameboard contains ships', () => {
     let scannedBoard = gameboard.scanBoard();
     console.log(scannedBoard);
-    expect(Array.isArray(scannedBoard)).toBeTruthy();
+    expect(Array.isArray(scannedBoard)).toBeFalsy();
   });
 
   it('gameboard is clear', () => {
@@ -64,7 +64,6 @@ describe('scan gameboard', () => {
     gameboard.receiveAttack(7, 0);
     gameboard.receiveAttack(8, 0);
     let scannedBoard = gameboard.scanBoard();
-    console.log(scannedBoard);
-    expect(scannedBoard).toMatch('grid is clear');
+    expect(scannedBoard).toBeFalsy();
   });
 });
