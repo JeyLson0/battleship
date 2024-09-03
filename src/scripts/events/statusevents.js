@@ -110,6 +110,7 @@ export default function updateStatus(gameObj, bool = undefined, status = 0) {
     // Computer's turn
     case 5:
       turnStatusBar.textContent = `Computer's turn.`;
+      gameStatusBar.textContent = ``;
       if (bool === true && status === 0) {
         gameStatusBar.textContent = 'Hit!';
       }
@@ -130,7 +131,7 @@ export default function updateStatus(gameObj, bool = undefined, status = 0) {
       }
       if (bool === false) {
         turnStatusBar.textContent = `Player one's turn.`;
-        gameStatusBar.textContent = `Miss!`;
+        gameStatusBar.textContent = ``;
       }
       break;
     // End game

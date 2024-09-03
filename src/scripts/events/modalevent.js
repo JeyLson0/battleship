@@ -19,9 +19,11 @@ function clearGridElemClass() {
 
 function clearEndGameModal() {
   const announcementWrapper = document.querySelector('#announcement-wrapper');
-  announcementWrapper.firstChild.remove();
-  const restartBtnWrapper = document.querySelector('#restart-btn-wrapper');
-  restartBtnWrapper.firstChild.remove();
+  if (announcementWrapper.children.length > 0) {
+    announcementWrapper.firstElementChild.remove();
+    const restartBtnWrapper = document.querySelector('#restart-btn-wrapper');
+    restartBtnWrapper.firstElementChild.remove();
+  }
 }
 
 export function startPvp(input, modal) {

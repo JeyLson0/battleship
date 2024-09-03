@@ -18,6 +18,9 @@ function compAttack(playerOne) {
     setTimeout(() => {
       const computer = gameObj.playerTwo;
       const compMove = computer.playMove(playerOne);
+      if (compMove === true) {
+        updateStatus(gameObj, true, 0);
+      }
       resolve(compMove);
     }, 800);
   });
@@ -88,11 +91,12 @@ async function playerTwoGridElemEvent(event) {
       gameObj.statePlayerTwoTurn();
     } else {
       gameObj.stateComputerTurn();
-      updateStatus(gameObj, false);
+      updateStatus(gameObj);
       while (true) {
         updateStatus(gameObj);
         const computerHit = await compAttack(gameObj.playerOne);
         if (!computerHit) {
+          updateStatus(gameObj, false);
           break;
         }
         const playerOneGameover = gameObj.playerOne.gameBoard.scanBoard();
