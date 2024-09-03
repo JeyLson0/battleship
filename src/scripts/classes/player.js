@@ -41,9 +41,9 @@ export default class Player {
 
     coordArr.forEach(coordinates => {
       if (
-        coordinates[0] < 9 &&
+        coordinates[0] <= 9 &&
         coordinates[0] >= 0 &&
-        coordinates[1] < 9 &&
+        coordinates[1] <= 9 &&
         coordinates[1] >= 0
       ) {
         this.hitStack.push(coordinates);
